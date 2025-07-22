@@ -157,6 +157,6 @@ class AlarmForegroundService : Service() {
         super.onDestroy()
         stopLocationUpdates()
         Log.d("AlarmManager", "Service destroyed")
-        scheduler.scheduleAlarm(timeInSec = 5)
+        scheduler.scheduleAlarm(timeInSec = 10)
     }
 }
