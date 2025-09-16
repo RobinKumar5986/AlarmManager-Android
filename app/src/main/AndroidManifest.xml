@@ -19,6 +19,10 @@
 
     <!--Boot Permission-->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!--Screen time permission-->
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions"/>
+
 
     <application
         android:allowBackup="true"
@@ -40,6 +44,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".ScreenReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="android.intent.action.SCREEN_OFF" />
+            </intent-filter>
+        </receiver>
         <receiver
             android:name=".ui.AlarmReceiver"
             android:exported="true"
@@ -53,6 +63,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
+        <receiver
+            android:name=".AirplaneModeReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.AIRPLANE_MODE" />
+            </intent-filter>
+        </receiver>
+
         <service
             android:name=".ui.AlarmForegroundService"
             android:foregroundServiceType="location"
